@@ -10,6 +10,23 @@ https://www.naver.com
 Click [here][여기]  
 
 
+
+[!alt text](logo.png "제목")  
+
+![][id]  
+
+[id]:logo.png "제에목"  
+  
+$$\sqrt{k}$$
+
+Inline: $\sqrt{k}$  
+
+[![Img Alt Text](http://img.youtube.com/vi/aZCXOw707nc/0.jpg)](https://youtu.be/aZCX0w707nc "Video Title")
+
+
+
+  
+
 [여기]:https://www.naver.com
 
 # 오늘은 월요일
