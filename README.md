@@ -17,60 +17,39 @@ Click [here][여기]
 ****
 😂  
 deata *science* lab  
-  
+
+
+```python
+print('hello');  
+```
+
+`inline-code();`    
+`으하하`  
 **bold**    
 dsadsa
 rrrrr
 lllllllllllllll
 llllllllllllllllllllll
 
-<a id="gimochi"></a>
-[go to gimochi](#gimochi)
+<a id="heehee"></a>
+[가자](#heehee)
 
 
 Header1
 =======  
  
 Header2
---------    
+--------     
 
 
 
+|왼쪽 |가운데|오른쪽|
+|:----|:----:|----:|
+|1    |가    |4    |
+|2    |운    |5    | 
+|3    |데    |6    |
 
 
 
-
-
-
-
-
-
-
-
-
-                  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-[기모찌](#header)   
+  
+[헤더고](#header)   
