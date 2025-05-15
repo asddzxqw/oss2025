@@ -36,11 +36,11 @@ def load_data():
     data_dir = os.path.join(current_dir, 'data')
     
     files = {
-        '2008-2011': os.path.join(data_dir, '서울시 대기질 자료 제공_20082011.csv'),
-        '2012-2015': os.path.join(data_dir, '서울시 대기질 자료 제공_20122015.csv'),
-        '2016-2019': os.path.join(data_dir, '서울시 대기질 자료 제공_20162019.csv'),
-        '2020-2021': os.path.join(data_dir, '서울시 대기질 자료 제공_20202021.csv'),
-        '2022': os.path.join(data_dir, '서울시 대기질 자료 제공_2022.csv')
+        '2008-2011': os.path.join(data_dir, 'seoul_air_20082011.csv'),
+        '2012-2015': os.path.join(data_dir, 'seoul_air_20122015.csv'),
+        '2016-2019': os.path.join(data_dir, 'seoul_air_20162019.csv'),
+        '2020-2021': os.path.join(data_dir, 'seoul_air_20202021.csv'),
+        '2022': os.path.join(data_dir, 'seoul_air_2022.csv')
     }
     
     for period, file in files.items():
