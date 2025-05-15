@@ -9,15 +9,15 @@ from folium import Icon
 import numpy as np
 import os
 
+# 페이지 설정
+st.set_page_config(page_title="서울시 대기질 모니터링", page_icon="🌫️", layout="wide")
+
 # 디버깅 정보
 st.write("=== 디버깅 정보 ===")
 st.write("현재 작업 디렉토리:", os.getcwd())
 st.write("현재 파일 위치:", __file__)
 st.write("파일 목록:", os.listdir('.'))
 st.write("================")
-
-# 페이지 설정
-st.set_page_config(page_title="서울시 대기질 모니터링", page_icon="🌫️", layout="wide")
 
 # CSS 스타일
 st.markdown("""
