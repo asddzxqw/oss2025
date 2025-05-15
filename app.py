@@ -7,9 +7,17 @@ import folium
 from streamlit_folium import st_folium
 from folium import Icon
 import numpy as np
+import os
 
 # 페이지 설정
 st.set_page_config(page_title="서울시 대기질 모니터링", page_icon="🌫️", layout="wide")
+
+# 디버깅 정보
+st.write("=== 디버깅 정보 ===")
+st.write("현재 작업 디렉토리:", os.getcwd())
+st.write("현재 파일 위치:", __file__)
+st.write("파일 목록:", os.listdir('.'))
+st.write("================")
 
 # CSS 스타일
 st.markdown("""
@@ -32,27 +40,19 @@ def load_data():
     """CSV 파일들을 로드하고 합치기"""
     dfs = []
     files = {
-        '2008-2011': 'data/seoul_air_20082011.csv',
-        '2012-2015': 'data/seoul_air_20122015.csv',
-        '2016-2019': 'data/seoul_air_20162019.csv',
-        '2020-2021': 'data/seoul_air_20202021.csv',
-        '2022': 'data/seoul_air_2022.csv'
+        '2008-2011': 'seoul_air_20082011.csv',
+        '2012-2015': 'seoul_air_20122015.csv',
+        '2016-2019': 'seoul_air_20162019.csv',
+        '2020-2021': 'seoul_air_20202021.csv',
+        '2022': 'seoul_air_2022.csv'
     }
     
     for period, file in files.items():
         try:
-            # 인코딩 문제가 있을 수 있어 다양한 인코딩 시도
-            for encoding in ['utf-8', 'cp949', 'euc-kr', 'cp1252']:
-                try:
-                    df = pd.read_csv(file, encoding=encoding)
-                    # 컬럼명 정리
-                    df.columns = ['일시', '구분', 'PM10', 'PM25']
-                    dfs.append(df)
-                    break
-                except:
-                    continue
+            df = pd.read_csv(file, encoding='utf-8-sig')
+            dfs.append(df)
         except:
-            st.warning(f"{file} 파일을 읽을 수 없습니다.")
+            st.error(f"파일 읽기 실패: {file}")
     
     if dfs:
         data = pd.concat(dfs, ignore_index=True)
