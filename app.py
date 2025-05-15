@@ -32,10 +32,10 @@ def load_data():
     """CSV 파일들을 로드하고 합치기"""
     dfs = []
     files = {
-        '2008-2011': 'data/seoul_air_20082011.csv',
-        '2012-2015': 'data/seoul_air_20122015.csv',
-        '2016-2019': 'data/seoul_air_20162019.csv',
-        '2020-2021': 'data/seoul_air_20202021.csv',
+        '2008-2011': 'seoul_air_20082011.csv',
+        '2012-2015': 'seoul_air_20122015.csv',
+        '2016-2019': 'seoul_air_20162019.csv',
+        '2020-2021': 'seoul_air_20202021.csv',
         '2022': 'data/seoul_air_2022.csv'
     }
     
