@@ -7,7 +7,6 @@ import folium
 from streamlit_folium import st_folium
 from folium import Icon
 import numpy as np
-import os
 
 # 페이지 설정
 st.set_page_config(page_title="서울시 대기질 모니터링", page_icon="🌫️", layout="wide")
@@ -32,29 +31,28 @@ st.markdown("""
 def load_data():
     """CSV 파일들을 로드하고 합치기"""
     dfs = []
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    data_dir = os.path.join(current_dir, 'data')
-    
     files = {
-        '2008-2011': os.path.join(data_dir, 'seoul_air_20082011.csv'),
-        '2012-2015': os.path.join(data_dir, 'seoul_air_20122015.csv'),
-        '2016-2019': os.path.join(data_dir, 'seoul_air_20162019.csv'),
-        '2020-2021': os.path.join(data_dir, 'seoul_air_20202021.csv'),
-        '2022': os.path.join(data_dir, 'seoul_air_2022.csv')
+        '2008-2011': 'data/seoul_air_20082011.csv',
+        '2012-2015': 'data/seoul_air_20122015.csv',
+        '2016-2019': 'data/seoul_air_20162019.csv',
+        '2020-2021': 'data/seoul_air_20202021.csv',
+        '2022': 'data/seoul_air_2022.csv'
     }
     
     for period, file in files.items():
         try:
-            # UTF-8로 먼저 시도
-            df = pd.read_csv(file, encoding='utf-8')
-            dfs.append(df)
-        except UnicodeDecodeError:
-            # 안되면 cp949로 시도
-            try:
-                df = pd.read_csv(file, encoding='cp949')
-                dfs.append(df)
-            except Exception as e:
-                st.warning(f"{file} 파일을 읽을 수 없습니다: {str(e)}")
+            # 인코딩 문제가 있을 수 있어 다양한 인코딩 시도
+            for encoding in ['utf-8', 'cp949', 'euc-kr', 'cp1252']:
+                try:
+                    df = pd.read_csv(file, encoding=encoding)
+                    # 컬럼명 정리
+                    df.columns = ['일시', '구분', 'PM10', 'PM25']
+                    dfs.append(df)
+                    break
+                except:
+                    continue
+        except:
+            st.warning(f"{file} 파일을 읽을 수 없습니다.")
     
     if dfs:
         data = pd.concat(dfs, ignore_index=True)
