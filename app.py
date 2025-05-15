@@ -36,7 +36,7 @@ def load_data():
         '2012-2015': 'seoul_air_20122015.csv',
         '2016-2019': 'seoul_air_20162019.csv',
         '2020-2021': 'seoul_air_20202021.csv',
-        '2022': 'data/seoul_air_2022.csv'
+        '2022': 'seoul_air_2022.csv'
     }
     
     for period, file in files.items():
