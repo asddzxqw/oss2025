@@ -41,18 +41,10 @@ def load_data():
     
     for period, file in files.items():
         try:
-            # 인코딩 문제가 있을 수 있어 다양한 인코딩 시도
-            for encoding in ['utf-8', 'cp949', 'euc-kr', 'cp1252']:
-                try:
-                    df = pd.read_csv(file, encoding=encoding)
-                    # 컬럼명 정리
-                    df.columns = ['일시', '구분', 'PM10', 'PM25']
-                    dfs.append(df)
-                    break
-                except:
-                    continue
+            df = pd.read_csv(file, encoding='utf-8-sig')
+            dfs.append(df)
         except:
-            st.warning(f"{file} 파일을 읽을 수 없습니다.")
+            st.error(f"파일 읽기 실패: {file}")
     
     if dfs:
         data = pd.concat(dfs, ignore_index=True)
