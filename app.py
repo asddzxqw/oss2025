@@ -41,10 +41,19 @@ def load_data():
     
     for period, file in files.items():
         try:
+            # UTF-8로 읽기
             df = pd.read_csv(file, encoding='utf-8')
+            
+            # 컬럼명 표준화 (괄호 제거)
+            df = df.rename(columns={
+                '미세먼지(PM10)': 'PM10',
+                '초미세먼지(PM2.5)': 'PM25',
+                '초미세먼지(PM25)': 'PM25' 
+            })
+            
             dfs.append(df)
-        except:
-            st.error(f"파일 읽기 실패: {file}")
+        except Exception as e:
+            st.error(f"파일 읽기 실패: {file} - {str(e)}")
     
     if dfs:
         data = pd.concat(dfs, ignore_index=True)
